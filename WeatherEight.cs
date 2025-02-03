@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using InterfaceImplementationLister;
 
 namespace WorkspaceCsharp
 {
-    public class WeatherEight
+    public class WeatherEight : IExerciseInterface
     {
-        public static void Exec()
+        public void Execute()
         {
             //Console.WriteLine(Console.ReadLine());
             int month,
@@ -52,4 +49,3 @@ namespace WorkspaceCsharp
         }
     }
 }
-
