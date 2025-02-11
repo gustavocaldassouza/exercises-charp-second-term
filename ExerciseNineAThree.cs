@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace WorkspaceCsharp
 {
     public class ExerciseNineAThree
@@ -10,7 +5,7 @@ namespace WorkspaceCsharp
         public static void Exec()
         {
             Console.WriteLine("Enter a character, a digit, or a special character: ");
-            char input = Convert.ToChar(Console.ReadLine());
+            char input = Convert.ToChar(Console.ReadLine() ?? "");
 
             if (Char.IsLetter(input))
             {
@@ -27,4 +22,3 @@ namespace WorkspaceCsharp
         }
     }
 }
-
