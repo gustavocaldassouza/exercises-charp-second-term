@@ -1,44 +1,50 @@
 using InterfaceImplementationLister;
 using Spectre.Console;
 
-namespace ExerciseCSharp
+namespace ExerciseCSharp;
+
+public class ExerciseFourArray : IExerciseInterface
 {
-    public class ExerciseFourArray : IExerciseInterface
+    public void Execute()
     {
-        public void Execute()
+        while (true)
         {
-            while (true)
+            AnsiConsole.Write(
+                new FigletText("Guess what I am saying!").LeftJustified().Color(Color.Green)
+            );
+            string secretMessage = AnsiConsole.Prompt(
+                new TextPrompt<string>("Input what Klara said?")
+            );
+            if (secretMessage != string.Empty)
             {
-                AnsiConsole.Write(new FigletText("Guess what I am saying!").LeftJustified().Color(Color.Green));
-                string secretMessage = AnsiConsole.Prompt(new TextPrompt<string>("Input what Klara said?"));
-                if (secretMessage != string.Empty)
+                for (int i = 0; i < 3; i++)
                 {
-                    for (int i = 0; i < 3; i++)
+                    AnsiConsole.Write(
+                        new Rule($"{i + 1} attempt").LeftJustified().RuleStyle("red")
+                    );
+                    string input = AnsiConsole.Prompt(new TextPrompt<string>("What Klara said?"));
+                    if (input == string.Empty)
                     {
-                        AnsiConsole.Write(new Rule($"{i + 1} attempt").LeftJustified().RuleStyle("red"));
-                        string input = AnsiConsole.Prompt(new TextPrompt<string>("What Klara said?"));
-                        if (input == string.Empty)
-                        {
-                            Console.WriteLine("You didn't say anything!");
-                            break;
-                        }
-                        if (input.ToLower() == secretMessage.ToLower())
-                        {
-                            Console.WriteLine("You got it!");
-                            break;
-                        }
+                        Console.WriteLine("You didn't say anything!");
+                        break;
                     }
-                    if (!AnsiConsole.Confirm("You want to play again?"))
+                    if (input.ToLower() == secretMessage.ToLower())
                     {
-                        return;
+                        Console.WriteLine("You got it!");
+                        break;
                     }
-                    Console.Clear();
                 }
-                else
+                if (!AnsiConsole.Confirm("You want to play again?"))
                 {
-                    Console.WriteLine("You didn't say anything!");
+                    return;
                 }
+                Console.Clear();
+            }
+            else
+            {
+                Console.WriteLine("You didn't say anything!");
             }
         }
     }
 }
+
